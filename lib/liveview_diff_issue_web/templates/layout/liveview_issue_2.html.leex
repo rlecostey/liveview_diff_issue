@@ -1,0 +1,38 @@
+<div class="timeslots-nav">
+  <nav>
+    <%= for {label, index} <- Enum.with_index(@link_labels) do %>
+      <button id=<%= "link-index-#{index}" %> value=<%= "link-#{index}" %> phx-click="select_link">
+        <%= label %>
+      </button>
+    <% end %>
+  </nav>
+</div>
+
+<%= if Enum.any?(@active_link_medias) do %>
+  <ul>
+    <%= for media <- @active_link_medias do %>
+      <li> <%= media.name %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <img class="w-full h-40 sm:h-64" src=<%= LiveviewDiffIssueWeb.Router.Helpers.static_path(@socket, "/images/phoenix.png") %> alt="" />
+  <button class="add-media-btn" phx-click="open_media_selection">
+    Add Media
+  </button>
+<% end %>
+
+<%= if @open_media_selection do %>
+  <form id="media-form" phx-change="select_media">
+    <select name="medias" id="media-select">
+      <%= for media <- @available_medias do %>
+        <option value=<%= media.id %>>
+          <%= media.name %>
+        </option>
+      <% end %>
+    </select>
+  </form>
+
+  <button class="submit-media-btn" phx-click="add_media">
+    Submit
+  </button>
+<% end %>
