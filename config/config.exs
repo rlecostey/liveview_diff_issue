@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :liveview_diff_issue,
-  ecto_repos: [LiveviewDiffIssue.Repo]
-
 # Configures the endpoint
 config :liveview_diff_issue, LiveviewDiffIssueWeb.Endpoint,
   url: [host: "localhost"],

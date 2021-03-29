@@ -6,18 +6,7 @@ defmodule LiveviewDiffIssue.Application do
   use Application
 
   def start(_type, _args) do
-    children = [
-      # Start the Ecto repository
-      LiveviewDiffIssue.Repo,
-      # Start the Telemetry supervisor
-      LiveviewDiffIssueWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: LiveviewDiffIssue.PubSub},
-      # Start the Endpoint (http/https)
-      LiveviewDiffIssueWeb.Endpoint
-      # Start a worker by calling: LiveviewDiffIssue.Worker.start_link(arg)
-      # {LiveviewDiffIssue.Worker, arg}
-    ]
+    children = [LiveviewDiffIssueWeb.Endpoint]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

@@ -1,5 +1,5 @@
 defmodule LiveviewDiffIssueWeb.PageLive do
-  alias LiveviewDiffIssueWeb.LayoutView
+  alias LiveviewDiffIssueWeb.PageView
   use LiveviewDiffIssueWeb, :live_view
 
   @available_medias [
@@ -7,7 +7,6 @@ defmodule LiveviewDiffIssueWeb.PageLive do
     %{id: 2, name: "media-2", links: []}
   ]
 
-  @impl true
   def mount(_, _, socket) do
     socket =
       socket
@@ -20,12 +19,10 @@ defmodule LiveviewDiffIssueWeb.PageLive do
     {:ok, socket}
   end
 
-  @impl true
   def render(assigns) do
-    LayoutView.render("liveview_issue.html", assigns)
+    PageView.render("liveview_issue.html", assigns)
   end
 
-  @impl true
   def handle_event("select_link", %{"value" => value}, socket) do
     active_link_index = value |> String.split("link-") |> List.last() |> String.to_integer()
     link_medias = reload_link_medias(socket, active_link_index)
@@ -38,7 +35,6 @@ defmodule LiveviewDiffIssueWeb.PageLive do
      |> assign(:selected_media_id, nil)}
   end
 
-  @impl true
   def handle_event("open_media_selection", _, socket) do
     {:noreply, assign(socket, :open_media_selection, true)}
   end
@@ -47,7 +43,6 @@ defmodule LiveviewDiffIssueWeb.PageLive do
     {:noreply, assign(socket, :selected_media_id, String.to_integer(media_id))}
   end
 
-  @impl true
   def handle_event("add_media", _, socket) do
     media = get_media(socket)
     available_medias = update_available_medias(socket, media.id)
@@ -60,7 +55,6 @@ defmodule LiveviewDiffIssueWeb.PageLive do
      |> assign(:open_media_selection, false)}
   end
 
-  @impl true
   def handle_info({:add_media_success, media}, socket) do
     available_medias = update_available_medias(socket, media.id)
 

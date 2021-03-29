@@ -22,7 +22,6 @@ defmodule LiveviewDiffIssueWeb do
       use Phoenix.Controller, namespace: LiveviewDiffIssueWeb
 
       import Plug.Conn
-      import LiveviewDiffIssueWeb.Gettext
       alias LiveviewDiffIssueWeb.Router.Helpers, as: Routes
     end
   end
@@ -72,7 +71,6 @@ defmodule LiveviewDiffIssueWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import LiveviewDiffIssueWeb.Gettext
     end
   end
 
@@ -87,8 +85,6 @@ defmodule LiveviewDiffIssueWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import LiveviewDiffIssueWeb.ErrorHelpers
-      import LiveviewDiffIssueWeb.Gettext
       alias LiveviewDiffIssueWeb.Router.Helpers, as: Routes
     end
   end
