@@ -20,7 +20,7 @@ defmodule LiveviewDiffIssueWeb.PageLive do
   end
 
   def render(assigns) do
-    PageView.render("liveview_issue.html", assigns)
+    PageView.render("liveview_issue_2.html", assigns)
   end
 
   def handle_event("select_link", %{"value" => value}, socket) do
