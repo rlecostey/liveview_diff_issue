@@ -3,25 +3,17 @@ defmodule LiveviewDiffIssueWeb.PageLiveTest do
 
   import Phoenix.LiveViewTest
 
-  test "liveview diff issue test", %{conn: conn} do
-    {:ok, view, _} = live(conn, "/")
+  test "it works with leex", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/eex_ok")
+    do_scenario(view)
+  end
 
-    view
-    |> element(".add-media-btn")
-    |> render_click()
+  test "it crashes with slimleex", %{conn: conn} do
+    {:ok, view, _html} = live(conn, "/slim_crash")
+    do_scenario(view)
+  end
 
-    view
-    |> element("#media-form")
-    |> render_change(%{"medias" => "1"})
-
-    view
-    |> element(".submit-media-btn")
-    |> render_click()
-
-    Process.sleep(2000)
-
-    view
-    |> element("#link-index-1")
-    |> render_click()
+  defp do_scenario(view) do
+    view |> element("#link-index-1") |> render_click()
   end
 end

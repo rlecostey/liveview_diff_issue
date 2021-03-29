@@ -10,19 +10,11 @@ defmodule LiveviewDiffIssueWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", LiveviewDiffIssueWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/eex_ok", PageLive, :index, session: %{"template" => "eex_ok.html"}
+    live "/slim_crash", PageLive, :index, session: %{"template" => "slim_crash.html"}
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", LiveviewDiffIssueWeb do
-  #   pipe_through :api
-  # end
 
 end

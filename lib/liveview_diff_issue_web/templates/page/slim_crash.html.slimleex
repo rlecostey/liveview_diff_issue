@@ -1,0 +1,12 @@
+div
+  nav
+    = for {label, index} <- Enum.with_index(@link_labels) do
+      button id="link-index-#{index}" value="link-#{index}" phx-click="select_link"
+        = label
+
+= if Enum.any?(@active_link_medias) do
+  ul
+    = for media <- @active_link_medias do
+      li= media.name
+- else
+  img src=Routes.static_path(@socket, "/images/phoenix.png")
